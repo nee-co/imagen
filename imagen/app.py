@@ -117,7 +117,7 @@ def do_upload():
     _image.file.seek(0)
     _image.save('{dir}/{name}'.format(dir=conf['image_save_directory'], name=_image_filename))
 
-    _body = {"image_path": "{image_url}{image_path}".format(image_url=conf['image_url'], image_path=_image_filename)}
+    _body = {"image_path": "{path}{name}".format(path=conf['image_url'], name=_image_filename)}
     res = HTTPResponse(body=_body, status=201)
     return res
 
@@ -163,7 +163,7 @@ def do_put(image_name):
         print(e)
         return HTTPResponse(status=500)
 
-    _body = {"image_path": "{image_url}{image_path}".format(image_url=conf['image_url'], image_path=image_name)}
+    _body = {"image_path": "{path}{name}".format(path=conf['image_url'], name=image_name)}
     res = HTTPResponse(body=_body, status=200)
     return res
 
