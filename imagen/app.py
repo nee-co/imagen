@@ -180,19 +180,19 @@ def do_delete(image_name):
 
     if not os.path.exists(_path):
         print('{image_name} not exists'.format(image_name=image_name))
-        return HTTPResponse(status=200)
+        return HTTPResponse(status=404)
 
     if os.path.isdir(_path):
         print('{image_name} is Directory'.format(image_name=image_name))
-        return HTTPResponse(status=200)
+        return HTTPResponse(status=422)
 
     try:
         os.remove(_path)
     except Exception as e:
         print(e)
-        return HTTPResponse(status=200)
+        return HTTPResponse(status=500)
 
-    res = HTTPResponse(status=200)
+    res = HTTPResponse(status=204)
     return res
 
 
