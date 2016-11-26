@@ -16,7 +16,7 @@ conf = {
     'host': '0.0.0.0',
     'port': '8000',
     # ToDo: 返すURLを '/image/<UUID>' か 'image/<UUID>' のどちらにするか検討
-    'image_url': '/image/',
+    'image_url_path': '/image/',
     'image_save_directory': '/srv/imagen/images/',
 }
 
@@ -37,15 +37,15 @@ if not os.path.exists(conf['image_save_directory']):
 # ToDo: コンフィグもうちょっとまともにする
 ENV_IMAGEN_HOST = 'IMAGEN_HOST'
 ENV_IMAGEN_PORT = 'IMAGEN_PORT'
-ENV_IMAGEN_IMAGE_URL = 'IMAGEN_IMAGE_URL'
+ENV_IMAGEN_IMAGE_URL_PATH = 'IMAGEN_IMAGE_URL_PATH'
 ENV_IMAGEN_IMAGE_SAVE_DIRECTORY = 'IMAGEN_IMAGE_DIRECTORY'
 
 if os.environ.get(key=ENV_IMAGEN_HOST, default=None) is not None:
     conf['host'] = os.environ.get(ENV_IMAGEN_HOST)
 if os.environ.get(key=ENV_IMAGEN_PORT, default=None) is not None:
     conf['port'] = os.environ.get(ENV_IMAGEN_PORT)
-if os.environ.get(key=ENV_IMAGEN_IMAGE_URL, default=None) is not None:
-    conf['image_url'] = os.environ.get(ENV_IMAGEN_IMAGE_URL)
+if os.environ.get(key=ENV_IMAGEN_IMAGE_URL_PATH, default=None) is not None:
+    conf['image_url_path'] = os.environ.get(ENV_IMAGEN_IMAGE_URL_PATH)
 if os.environ.get(key=ENV_IMAGEN_IMAGE_SAVE_DIRECTORY, default=None) is not None:
     conf['image_save_directory'] = os.environ.get(ENV_IMAGEN_IMAGE_SAVE_DIRECTORY)
 
@@ -117,7 +117,7 @@ def do_upload():
     _image.file.seek(0)
     _image.save('{dir}/{name}'.format(dir=conf['image_save_directory'], name=_image_filename))
 
-    _body = {"image_path": "{path}{name}".format(path=conf['image_url'], name=_image_filename)}
+    _body = {"image_path": "{path}{name}".format(path=conf['image_url_path'], name=_image_filename)}
     res = HTTPResponse(body=_body, status=201)
     return res
 
@@ -163,7 +163,7 @@ def do_put(image_name):
         print(e)
         return HTTPResponse(status=500)
 
-    _body = {"image_path": "{path}{name}".format(path=conf['image_url'], name=image_name)}
+    _body = {"image_path": "{path}{name}".format(path=conf['image_url_path'], name=image_name)}
     res = HTTPResponse(body=_body, status=200)
     return res
 

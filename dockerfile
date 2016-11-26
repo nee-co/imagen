@@ -15,7 +15,7 @@ VOLUME /srv/imagen/images
 
 ENV IMAGEN_HOSTNAME 0.0.0.0
 ENV IMAGEN_PORT 8000
-ENV IMAGEN_IMAGE_URL /image/
+ENV IMAGEN_IMAGE_URL_PATH /image/
 ENV IMAGEN_IMAGE_DIRECTORY /srv/imagen/images
 
 COPY docker-entrypoint.sh /
