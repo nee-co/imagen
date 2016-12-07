@@ -3,9 +3,6 @@ FROM python:3.5.2
 ENV IMAGEN_PORT 8000
 ENV IMAGEN_WORKERS 10
 
-ARG REVISION
-LABEL revision=$REVISION maintainer="Nee-co"
-
 EXPOSE 8000
 
 VOLUME /srv/imagen/images
@@ -21,3 +18,6 @@ RUN python -m ensurepip --upgrade && \
 COPY docker-entrypoint.sh /
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
+
+ARG REVISION
+LABEL revision=$REVISION maintainer="Nee-co"
