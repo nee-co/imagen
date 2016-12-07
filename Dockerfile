@@ -8,6 +8,9 @@ RUN python -m ensurepip --upgrade && \
         pip install -r requirements.freeze && \
         pip install gunicorn
 
+ENV IMAGEN_PORT 8000
+ENV IMAGEN_WORKERS 10
+
 VOLUME /srv/imagen/images
 
 COPY docker-entrypoint.sh /
