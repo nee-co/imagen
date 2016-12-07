@@ -49,7 +49,7 @@ class ImageAPI(Resource):
         pil_image = Image.open(image.stream)
         pil_image.save(file_path, current_app.config['SAVE_FORMAT'])
 
-        return make_response(jsonify({'file_name': filename}), 201)
+        return make_response(jsonify({'image_name': filename}), 201)
 
     def delete(self, image_name: str):
         filename = secure_filename(image_name)
