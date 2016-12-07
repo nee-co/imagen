@@ -20,3 +20,17 @@ cd imagen/
 docker build --tag=imagen --no-cache .
 docker run -d -p 8000:8000 imagen
 ```
+
+##### Environment Variables
+
+###### `IMAGEN_PORT`
+default: `8000`
+
+gunicorn port number
+
+######`IMAGEN_WORKERS`
+
+default: `10`
+
+> gunicorn
+> The number of worker processes for handling requests.
