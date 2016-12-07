@@ -27,7 +27,7 @@ class ImageAPI(Resource):
             filename = str(uuid4()) + '.' + current_app.config['SAVE_EXTENSION']
             file_path = os.path.join(current_app.config['UPLOAD_DIRECTORY'], filename)
 
-        pil_image.save(file_path, 'PNG')
+        pil_image.save(file_path, current_app.config['SAVE_FORMAT'])
 
         return make_response(jsonify({'image_name': filename}), 201)
 
@@ -47,7 +47,7 @@ class ImageAPI(Resource):
         file_path = os.path.join(current_app.config['UPLOAD_DIRECTORY'], filename)
 
         pil_image = Image.open(image.stream)
-        pil_image.save(file_path, 'PNG')
+        pil_image.save(file_path, current_app.config['SAVE_FORMAT'])
 
         return make_response(jsonify({'file_name': filename}), 201)
 
