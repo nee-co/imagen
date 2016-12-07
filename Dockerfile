@@ -18,3 +18,6 @@ COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 EXPOSE 8000
+
+ARG REVISION
+LABEL revision=$REVISION maintainer="Nee-co"
