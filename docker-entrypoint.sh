@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
 
-python /app/imagen/app.py
+export PYTHONPATH=/app
+gunicorn --bind=0.0.0.0:8000 app:app
