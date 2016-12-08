@@ -23,4 +23,9 @@ app.config.update(dict(
 if not os.path.exists(app.config['UPLOAD_DIRECTORY']):
     os.makedirs(app.config['UPLOAD_DIRECTORY'])
 
-api.add_resource(ImageAPI, '/internal/images/', '/internal/images/<string:image_name>')
+api.add_resource(
+    ImageAPI,
+    '/internal/images',
+    '/internal/images/',
+    '/internal/images/<string:image_name>'
+)
