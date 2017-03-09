@@ -12,7 +12,7 @@ api = Api(app)
 
 app.config.update(dict(
     UPLOAD_DIRECTORY='/srv/imagen/images/',
-    ALLOWED_EXTENSIONS=('png', 'jpg', 'gif'),
+    ALLOWED_EXTENSIONS=('gif', 'jpg', 'jpeg', 'png'),
     ALLOWED_FORMATS=('PNG', 'JPEG', 'GIF'),
     SAVE_EXTENSION='png',
     SAVE_FORMAT='PNG',
